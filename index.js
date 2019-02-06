@@ -3,7 +3,6 @@ const app= express();
 const mongoose=require('mongoose')
 const cors = require('cors')
 const user=require('./user/user')
-const path=require('path')
 const Users= require('./models/models')
 const router = express.Router();
 
@@ -62,10 +61,11 @@ app.use(cors())
 
 app.use('/api',router)
 
-app.use(express.static("app/build"));
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve("index.html"));
-  });
-
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("app/build"));
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "app", "build", "index.html"));
+    });
+  }
 app.listen(port,()=>console.log('server is running on port '+port))
 
