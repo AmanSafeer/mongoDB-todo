@@ -1,5 +1,10 @@
 export default (id, reqMethod,obj)=>{
-    const url=`/api/${id}`
+    if(id){
+    var url=`/api/${id}`
+    }
+    else{
+      var url=`/api`
+    }
     const options = {
       method:reqMethod,
       headers:{

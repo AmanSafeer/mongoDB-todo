@@ -63,7 +63,7 @@ app.use(cors())
 app.use('/api',router)
 
     app.use(express.static("app/build"));
-    app.get("*", (req, res) => {
+    app.get("/", (req, res) => {
       res.sendFile(path.resolve(__dirname, "app", "build", "index.html"));
     });
 
