@@ -3,6 +3,8 @@ const app= express();
 const mongoose=require('mongoose')
 const cors = require('cors')
 const user=require('./user/user')
+const bodyParser = require("body-parser");
+const path = require("path");
 const Users= require('./models/models')
 const router = express.Router();
 
@@ -57,6 +59,7 @@ router.delete('/:id',(req,res)=>{
 })
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors())
 
 app.use('/api',router)
