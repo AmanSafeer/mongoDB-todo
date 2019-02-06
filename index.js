@@ -3,6 +3,7 @@ const app= express();
 const mongoose=require('mongoose')
 const cors = require('cors')
 const user=require('./user/user')
+const path=require('path')
 const Users= require('./models/models')
 const router = express.Router();
 
@@ -10,8 +11,9 @@ const url=`mongodb://${user.name}:${user.password}@ds113815.mlab.com:13815/new_d
 const port = process.env.PORT || 5000
 
 
-mongoose
-.connect(url)
+mongoose.connect(url,{
+    useNewUrlParser:true
+})
 .then(()=>console.log('mlab is running'))
 .catch((err)=>console.log(err.message))
 
@@ -60,12 +62,10 @@ app.use(cors())
 
 app.use('/api',router)
 
-if (process.env.NODE_ENV === "production") {
 app.use(express.static("app/build"));
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, "app", "build", "index.html"));
   });
-}
 
 app.listen(port,()=>console.log('server is running on port '+port))
 
