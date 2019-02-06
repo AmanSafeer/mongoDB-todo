@@ -62,9 +62,9 @@ app.use(cors())
 
 app.use('/api',router)
 
-    app.use(express.static("app"));
+    app.use(express.static("app/build"));
     app.get("/", (req, res) => {
-      res.sendFile('./app/build/index.html');
+      res.sendFile(path.resolve("app", "build", "index.html"));
     });
 
 app.listen(port,()=>console.log('server is running on port '+port))
