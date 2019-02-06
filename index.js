@@ -64,7 +64,7 @@ app.use('/api',router)
 
     app.use(express.static("app/build"));
     app.get("/", (req, res) => {
-      res.sendFile(path.resolve("app", "build", "index.html"));
+      res.sendFile('index.html');
     });
 
 app.listen(port,()=>console.log('server is running on port '+port))
