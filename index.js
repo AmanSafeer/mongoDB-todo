@@ -1,7 +1,6 @@
 const express= require('express');
 const app= express();
 const mongoose=require('mongoose')
-const path = require('path')
 const cors = require('cors')
 const user=require('./user/user')
 const Users= require('./models/models')
@@ -63,8 +62,8 @@ app.use(cors())
 app.use('/api',router)
 
     app.use(express.static("app/build"));
-    app.get("/", (req, res) => {
-      res.sendFile('index.html');
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname,"app","build","index.html"));
     });
 
 app.listen(port,()=>console.log('server is running on port '+port))
