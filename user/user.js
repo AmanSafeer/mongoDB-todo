@@ -1,4 +1,4 @@
-const name="amanullah1"
+const name="amanullah"
 const password="aman123456"
 
 module.exports={
